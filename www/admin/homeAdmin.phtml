@@ -1,0 +1,43 @@
+<!-- instance COntroller Admin pour verification admin connecté -->
+<?php 
+    $adminSession = new AdminController();
+?>
+
+<!-- SI l'ADMIN EST CONNECTE: AFFICHAGE PANNEL ADMIN -->
+<?php if($adminSession->isAdmin() === true): ?>
+
+<section>
+    <h2>Panel administration</h2>
+    
+</section>
+
+<!-- SINON SI ADMIN PAS CONNECTE :AFFICHAGE FORMULAIRE CONNEXION -->
+<?php else: ?>
+
+<section>
+    <?php if(isset($_GET['message'])):?>
+        <p class="<?=htmlspecialchars($_GET['class'])?>"><?= htmlspecialchars($_GET['message'])?></p>
+    <?php endif;?>
+    <h2 class="h2-admin">Formulaire de connexion</h2>
+    <div class="form-container">
+        <form class="form" action="index.php?action=admin" method="POST" enctype="multipart/form-data">
+            <div>
+                <label for="admin-mail">Adresse mail :</label>
+                <input name="admin-mail" type="mail" placeholder="name@mail.com" id="admin-mail">
+            </div>
+            <div>
+                <label for="admin-password">Mot de passe :</label>
+                <input name="admin-password" type="text" placeholder="mot de passe" id="admin-password" >
+            </div>
+            <div class="form-btn-container">
+                <button type="submit">Valider</button>
+                <button type="reset">Effacer</button>
+            </div>
+        </form>
+        <div class="form-logo">
+            <img src="www/img/logo.png">
+        </div>
+    </div>
+</section>
+
+<?php endif; ?>

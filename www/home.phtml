@@ -1,0 +1,120 @@
+<section>
+            <div class="slide-box">
+                <div class="slider">
+                    <div class="slide-item">
+                        <img src="www/img/slide/slide_vercors.jpg" alt=" vercors">
+                        <p>Vercors</p>
+                    </div>
+                    <div class="slide-item">
+                        <img src="www/img/slide/slide_chartreuse.jpg" alt=" Chartreuse">
+                        <p>Chartreuse</p>
+                    </div>
+                    <div class="slide-item">
+                        <img src="www/img/slide/slide_belledonne.jpg" alt=" Belledonne">
+                        <p>Belledonne</p>
+                    </div>
+                    <div class="slide-item">
+                        <img src="www/img/slide/slide_oisans.jpg" alt=" Oisans">
+                        <p>Oisans</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <figure class="quotation">
+            <blockquote class="blockquote"> <span class="open-quote">&ldquo;</span> La volonté permet de grimper sur les cimes;  sans volonté on reste au pied de la montagne<span class="close-quote">&rdquo;</span></blockquote>
+            <figcaption class="blockquote-figcaption">Proverbe chinois</figcaption>
+        </figure>
+
+        <section class="latestwalk-section section-style">
+            <h2 class="h2-main">Dernière Ballade</h2>
+            <div class="latestwalk-wrapper">
+                <div class="latestwalk-presentation">
+                    <img class="latest-img" src="www/img/ballades/<?=htmlspecialchars($latestWalk['photo'])?>" alt="photo ballade">
+                    <div class="latestwalk-info">
+                        <p><?=htmlspecialchars($latestWalk['nom_massif'])?></p>
+                        <p><?=htmlspecialchars($latestWalk['nom_rando'])?></p>
+                    </div>
+                    
+                </div>
+                <div class="latestwalk-statistic">
+                    <h3 class="h3-main">Profil de la marche</h3>
+                    <ul class="latestwalk-statistic-list">
+                        <li>
+                            <i class="fa-solid fa-flag-checkered"></i>
+                            <p class="statistics-legend">Ville de départ</p>
+                            <p class="statistics-data"><?=htmlspecialchars($latestWalk['ville_depart'])?></p>
+                        </li>
+                        <li>
+                            <i class="fa-solid fa-stopwatch"></i>
+                            <p class="statistics-legend">Durée</p>
+                            <p class="statistics-data"><?=htmlspecialchars($durationWalk)?></p>
+                        </li>
+                        <li>
+                            <i class="fa-solid fa-shoe-prints"></i>
+                            <p class="statistics-legend">Distance</p>
+                            <p class="statistics-data"><?=htmlspecialchars($latestWalk['distance'].' km')?></p>
+                        </li>
+                        <li>
+                            <i class="fa-solid fa-mountain"></i>
+                            <p class="statistics-legend">Dénivelé</p>
+                            <p class="statistics-data"><?=htmlspecialchars($latestWalk['denivele'].' m')?></p>
+                        </li>
+                        <li>
+                            <i class="fa-solid fa-fire-flame-curved"></i>
+                            <p class="statistics-legend">Calories</p>
+                            <p class="statistics-data"><?=htmlspecialchars($latestWalk['calories'].' Kcal')?></p>
+                        </li>
+                    </ul>
+                    <div class="link-container">
+                        <a href="index.php?action=walk_resume&id_walk=<?= htmlspecialchars($latestWalk['id_rando'])?>" title="Lire le résumé" class="link-btn">Lire le résumé</a>
+                        <a href="#" title="Voir l'album" class="link-btn">Voir l'album</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section-style">
+            <h2 class="h2-main">Cumul de l'année</h2>
+            <div class="total-year-container">
+                <ul class="list-year">
+                    <li><?=Date('Y')?></li>
+                    <li>
+                        <i class="fa-solid fa-shoe-prints"></i>
+                        <p><?=htmlspecialchars($cumulStatByYear['totalDist'].' Km')?></p>
+                    </li>
+                    <li>
+                        <i class="fa-solid fa-stopwatch"></i>
+                        <p><?= htmlspecialchars($duration)?></p>
+                    </li>
+                    <li>
+                        <i class="fa-solid fa-fire-flame-curved"></i>
+                        <p><?=htmlspecialchars($cumulStatByYear['totalCalories'].' Kcal')?></p>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="section-style">
+            <h2 class="h2-main">Historique des Randonnées</h2>
+            <div class="historic-container">
+                <div class="list-historic">
+                    <?php foreach($historicWalk as $items):?>
+                    <div>
+                        <a href="index.php?action=walk_resume&id_walk=<?= htmlspecialchars($items['id_rando'])?>" title="Lire le résumé">
+                            <img src='www/img/ballades/<?=htmlspecialchars($items['photo'])?>' alt="<?=htmlspecialchars($items['photo'])?>">
+                            <p class="card-city"><?=htmlspecialchars($items['ville_depart'])?></p>
+                            <p class="card-walk"><?=htmlspecialchars($items['nom_rando'])?></p>
+                        </a>
+                    </div>
+                    <?php endforeach;?>
+                    <div>
+                        <img src='www/img/ballades/defaut.jpg' alt="photo paysage">
+                        <p class="card-city">Voir d'autres randonnées</p>
+                        <p class="card-walk">Plus de randonnées</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</section>

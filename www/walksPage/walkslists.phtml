@@ -1,0 +1,22 @@
+<section>
+    <h2 class="h2-main">Liste des Randonnées et Ballades</h2>
+
+    <ul class="walks-list">
+        <?php foreach($ListWalks as $item):?>
+        <li>
+            <div class="card-container">
+                <div class="card-container-img">
+                    <img src="www/img/ballades/<?=htmlspecialchars($item['photo'])?>" alt="photop de la randonnée">
+                </div>
+                <div class="card-infos">
+                    <h3><?=htmlspecialchars($item['nom_rando'])?></h3>
+                    <p>Au départ de : <?=htmlspecialchars($item['ville_depart'])?></p>
+                    <p><?=htmlspecialchars($item['dateformat'])?></p>
+                    <a class="link-btn" href="index.php?action=walk_resume&id_walk=<?=htmlspecialchars($item['id_rando'])?>" title="lien vers la randonnée">Voir le résumé</a>
+                </div>
+            </div>
+        </li>
+        <?php endforeach; ?>
+    </ul>
+
+</section>

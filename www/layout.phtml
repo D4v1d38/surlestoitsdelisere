@@ -1,0 +1,70 @@
+<?php
+$adminSession = new AdminController();
+?>
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Les toîts de l'isère</title>
+    <!-- google fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sansita+Swashed:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet">
+    <!-- Fonts Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Slick plugin -->
+    <link rel="stylesheet" type="text/css" href="www/vendor/slick/slick/slick.css"/>
+    <link rel="stylesheet" type="text/css" href="www/vendor/slick/slick/slick-theme.css"/>
+    <!-- CSS styles -->
+    <link rel="stylesheet" href="www/css/normalise.css">
+    <link rel="stylesheet" href="www/css/style.css">
+
+</head>
+<body>
+    <header class="top-header">
+        <div class="header-title">
+            <img src="www/img/logo2.png" alt="logo">
+            <p class="site-name">Sur les toîts de l'isère</p>
+            <h1 class="subtitle">promenades sur les sommets Grenoblois</h1>
+            <div class ="btn-container">
+                <span class="menu-btn" id="main-btn">Menu</span>
+            </div>
+        </div>
+        
+        <nav  >
+            <ul class="main-menu" id="main-menu">
+                <li><a href="index.php" title="home">Home</a></li>
+                <li><a href="index.php?action=walk_list" title="Mes Ballades">Mes Ballades</a></li>
+                <li><a href="#" title="A propos">A propos</a></li>
+                <li><a href="#" title="Météo">Météo</a></li>
+                <li><a href="index.php?action=admin" title="admin">Admin</a></li>
+                <?php if($adminSession->isAdmin()):?>
+                <li><a href="index.php?action=deconnect" title="deconnexion">Deconnexion</a></li>
+                <?php endif;?>
+            </ul>
+
+        </nav>
+    </header>
+
+    <div class="container">
+        <!-- dynamic template -->
+        <?php require $template.".phtml";?>
+    </div> 
+
+    <footer class="footer">
+        <div class="container">
+            <p><?=Date('Y')?></p>
+        </div>
+    </footer>
+
+    <script src="www/js/main.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="www/vendor/slick/slick/slick.min.js"></script>
+    <script src="www/js/slickinit.js"></script>
+</body>
+</html>
