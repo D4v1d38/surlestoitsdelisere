@@ -37,7 +37,6 @@ class AdminController{
                         // le pwd est incorrect : message d'erreur
                         $this->message->messageInfo("le mot de passe est incorrect",'admin','error-message');
                     }
-                    
                 }
 
             }else{
