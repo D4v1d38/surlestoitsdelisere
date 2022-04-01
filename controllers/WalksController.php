@@ -8,6 +8,7 @@ class WalksController
     public function __construct(){
         $this->walk = new Walks();
         $this->connect = new AdminController();
+        $this->message = new Functions();
 
     }
 
@@ -36,7 +37,7 @@ class WalksController
         require 'www/layout.phtml';
     }
 
-    // Admin
+    // Admin functions
 
     public function createMassif():void{
         if(!$this->connect->isAdmin() === true){
@@ -45,7 +46,17 @@ class WalksController
         }
 
         if(!empty($_POST)){
-            //traitement du formulaire
+            if(isset($_POST['massif_name'], $_POST['massif_description'])){
+                if(!empty($_POST['massif_name']) && !empty($_POST['massif_description'])){
+                    $massifName         = $_POST['massif_name'];
+                    $massifDescription  = $_POST['massif_description'];
+
+                }
+                else{
+                    $this->message->messageInfo('Veuillez remplir tous les champs','create_massif','error-message');
+                }
+
+            }
         }
         else{
             $template = 'www/admin/create_massif';
