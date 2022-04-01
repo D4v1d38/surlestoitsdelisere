@@ -10,7 +10,7 @@ class Admin{
         $this->bdd = $this->database->getConnectBdd();
     }
 
-    public function getAdminByMail($mail){
+    public function getAdminByMail(string $mail): ?array{
         $query = $this->bdd->prepare('SELECT id_admin, nom, prenom, mail, password 
         FROM admin 
         WHERE mail = ?');
@@ -18,6 +18,6 @@ class Admin{
         $query->execute([$mail]);
 
         $admin = $query->fetch();
-        return $admin; 
+        return $admin ?: null ; 
     }
 }

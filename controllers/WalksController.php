@@ -7,6 +7,7 @@ class WalksController
 
     public function __construct(){
         $this->walk = new Walks();
+        $this->connect = new AdminController();
 
     }
 
@@ -33,5 +34,24 @@ class WalksController
 
         $template = 'www/walksPage/walkslists';
         require 'www/layout.phtml';
+    }
+
+    // Admin
+
+    public function createMassif():void{
+        if(!$this->connect->isAdmin() === true){
+            header("location:index.php");
+            exit();
+        }
+
+        if(!empty($_POST)){
+            //traitement du formulaire
+        }
+        else{
+            $template = 'www/admin/create_massif';
+            require 'www/layout.phtml';
+        }
+
+
     }
 }

@@ -42,4 +42,5 @@ class Walks
         $histoByName = $query->fetchAll();
         return $histoByName;
     }
+
 }

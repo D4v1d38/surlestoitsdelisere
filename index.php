@@ -33,6 +33,11 @@ if(array_key_exists('action',$_GET)){
             $administrator =  new AdminController();
             $administrator->deconnect();
         break;
+        case 'create_massif' :
+            require "controllers/WalksController.php";
+            $massif = new WalksController();
+            $massif->createMassif();
+        break;
     }
 }else{
     require "controllers/HomeController.php";
