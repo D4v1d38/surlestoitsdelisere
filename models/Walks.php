@@ -43,4 +43,12 @@ class Walks
         return $histoByName;
     }
 
+    public function addMassif(string $massifName, string $massifDescription):bool{
+        $query = $this->bdd->prepare('INSERT INTO massifs( nom_massif, introduction) 
+        VALUES (?,?)');
+        
+        $test = $query->execute([$massifName,$massifDescription]);
+        return $test;
+    }
+
 }

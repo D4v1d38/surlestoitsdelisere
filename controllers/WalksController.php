@@ -51,11 +51,31 @@ class WalksController
                     $massifName         = $_POST['massif_name'];
                     $massifDescription  = $_POST['massif_description'];
 
+                    $error = false;
+                    $add = false;
+                    // controles des données
+                    if(is_numeric($massifName) || is_numeric($massifDescription)){
+                        $error = true;
+                        $this->message->messageInfo('les champs doivent contenir du texte','create_massif','error-message');
+                    }
+                    // si error est false alors on execute la requete d'insertion
+                    if(!$error){
+                        $add = $this->walk->addMassif($massifName,$massifDescription);
+                    }
+
+                    // Si add revoir true, alors la requete a été exécutée.
+                    if($add === true){
+                        $this->message->messageInfo('le massif a été ajouté avec succès','create_massif','success-message');
+                    }
+
                 }
                 else{
                     $this->message->messageInfo('Veuillez remplir tous les champs','create_massif','error-message');
                 }
 
+            }
+            else{
+                $this->message->messageInfo('Une erreur est survenu lors du traitement','create_massif','error-message');
             }
         }
         else{
