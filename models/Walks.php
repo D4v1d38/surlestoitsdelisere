@@ -10,6 +10,17 @@ class Walks
         $this->bdd = $this->database->getConnectBdd();
     }
 
+    // SELECT QUERIES
+    public function getMassifList():array{
+        $query = $this->bdd->prepare('SELECT id_massif, nom_massif, introduction 
+        FROM massifs 
+        ');
+
+        $query->execute();
+        $listOfMassifs = $query->fetchAll();
+        return $listOfMassifs;
+    }
+
     public function getWalksList():array{
         $query = $this->bdd->prepare('SELECT id_rando,DATE_FORMAT(date,"%d/%m/%y")As dateformat,nom_rando,massif,ville_depart,photo, nom_massif
         FROM randos
@@ -29,7 +40,17 @@ class Walks
         $query->execute([$idWalk]);
         $oneWalk = $query->fetch();
         return $oneWalk;
+    }
 
+    public function getMassifById(int $idMAssif):array{
+        $query = $this->bdd->prepare('SELECT id_massif, nom_massif, introduction 
+        FROM massifs 
+        WHERE id_massif=?
+        ');
+
+        $query->execute([$idMAssif]);
+        $massifById = $query->fetch();
+        return $massifById;
     }
 
     public function historicWalkByName(string $name):array{
@@ -43,6 +64,7 @@ class Walks
         return $histoByName;
     }
 
+    // INSERT INTO QUERIES
     public function addMassif(string $massifName, string $massifDescription):bool{
         $query = $this->bdd->prepare('INSERT INTO massifs( nom_massif, introduction) 
         VALUES (?,?)');
@@ -50,5 +72,8 @@ class Walks
         $test = $query->execute([$massifName,$massifDescription]);
         return $test;
     }
+
+    // UPDATE QUERIES
+    
 
 }

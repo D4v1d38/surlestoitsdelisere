@@ -7,22 +7,22 @@
 ?>
 
 <section>
-    <h2>Créer un nouveau Massif</h2>
+    <h2>Modifier un Massif</h2>
     
     <?php if(isset($_GET['message'])):?>
         <p class=<?=htmlspecialchars($_GET['class'])?> ><?=htmlspecialchars($_GET['message'])?></p>
     <?php endif; ?>
 
-    <form class="form" action="index.php?action=create_massif" method="POST" enctype="multipart/form-data">
+    <form class="form" action="index.php?action=update_massif" method="POST" enctype="multipart/form-data">
 
         <div>
             <label for="massif_name">Nom du massif</label>
-            <input type="text" name="massif_name" id="massif_name" placeholder="nom du massif">
+            <input type="text" name="massif_name" id="massif_name" placeholder="nom du massif" value="<?= htmlspecialchars($oneMassif['nom_massif']) ?>">
         </div>
 
         <div>
-            <label for="massif_description">Description du massif</label>
-            <textarea name="massif_description" id="massif_description"></textarea>
+            <label for="massif_description">Présentation du massif</label>
+            <textarea name="massif_description" id="massif_description"><?= htmlspecialchars($oneMassif['introduction']) ?></textarea>
         </div>
 
         <div class="form-btn-container">

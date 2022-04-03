@@ -1,0 +1,32 @@
+<?php
+    if(!$this->connect->isAdmin()){
+        header('location:index.php');
+        exit();
+    }
+?>
+
+<section>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Nom du massif</th>
+                <th>Modifier</th>
+                <th>Supprimer</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <?php foreach($massifList as $item): ?>
+            <tr>
+                <td data-label="massif"><?=htmlspecialchars($item['nom_massif'])?></td>
+                <td data-label="modifier">
+                    <a class="btn-modif" href="index.php?action=update_massif&id_massif=<?=htmlspecialchars($item['id_massif']) ?>"><i class="fa-solid fa-pen"></i></a>
+                </td>
+                <td data-label="supprimer">Supprimer</td>
+            </tr>
+            <?php endforeach;?>
+        </tbody>
+    </table>
+
+</section>

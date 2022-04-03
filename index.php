@@ -38,6 +38,16 @@ if(array_key_exists('action',$_GET)){
             $massif = new WalksController();
             $massif->createMassif();
         break;
+        case 'manage_massif' :
+            require "controllers/WalksController.php";
+            $massif = new WalksController();
+            $massif->manageMassif();
+        break;
+        case 'update_massif' :
+            require "controllers/WalksController.php";
+            $massif = new WalksController();
+            $massif->updateMassif();
+        break;
     }
 }else{
     require "controllers/HomeController.php";
