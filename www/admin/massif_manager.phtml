@@ -6,6 +6,11 @@
 ?>
 
 <section>
+    <h2>Gestion des massifs</h2>
+    
+    <?php if(isset($_GET['message'])):?>
+        <p class="<?=htmlspecialchars($_GET['class'])?>"><?= htmlspecialchars($_GET['message'])?></p>
+    <?php endif;?>
 
     <table class="table">
         <thead>

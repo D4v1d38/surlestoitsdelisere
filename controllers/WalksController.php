@@ -101,7 +101,34 @@ class WalksController
         }
 
         if(!empty($_POST)){
-            //traitement du formulaire
+            if(isset($_POST['id_massif'], $_POST['massif_name'], $_POST['massif_description'])){
+                if(!empty($_POST['id_massif']) && !empty($_POST['massif_name']) && !empty($_POST['massif_description'])){
+                    $massifId           = $_POST['id_massif'];
+                    $massifName         = $_POST['massif_name'];
+                    $massifDescription  = $_POST['massif_description'];
+
+                    $error = false;
+                    $update = false;
+
+                    if(is_numeric($massifName) && is_numeric($massifDescription)){
+                        $error = true;
+                        $this->message->messageInfo('Les champs doivent contenir du texte', 'update_massif', 'error-message');
+                    }
+                    if($error === false){
+                        $update = $this->walk->updateMassif($massifId,$massifName,$massifDescription);
+                    }
+
+                    if($update ===true){
+                        $this->message->messageInfo('les modifications ont été prises en compte', 'manage_massif', 'success-message');
+                    }
+                }
+                else{
+                    $this->message->messageInfo('Tous les champs doivent être completer', 'update_massif', 'error-message');
+                }
+            }
+            else{
+                $this->message->messageInfo('Une erreur est survenue lors du traitement du formulaire', 'update_massif', 'error-message');
+            }
         }
         else{
             //si le formulaire n'est pas soumis, affichage de form prérempli

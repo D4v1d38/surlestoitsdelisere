@@ -74,6 +74,14 @@ class Walks
     }
 
     // UPDATE QUERIES
+    public function updateMassif(int $massifId,string $massifName,string $massifDescription):bool{
+        $query = $this->bdd->prepare('UPDATE massifs 
+        SET nom_massif=?,introduction=?
+        WHERE id_massif = ?');
+
+        $test = $query->execute([$massifName,$massifDescription,$massifId]);
+        return $test;
+    }
     
 
 }
